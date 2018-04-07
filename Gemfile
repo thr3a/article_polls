@@ -51,7 +51,7 @@ group :development do
   gem 'pry-byebug'
   gem 'pry-doc'
   
-  gem 'capistrano'
+  gem 'capistrano', '3.5.0'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'

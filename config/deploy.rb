@@ -24,10 +24,10 @@ set :deploy_to, '/var/www/article_polls'
 # set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/deploy/production.rb')
+set :linked_files, fetch(:linked_files, []).push('config/database.yml')
 
 # Default value for linked_dirs is []
-# set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system')
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system')
 
 # Default value for default_env is {}
 set :default_env, {
@@ -70,7 +70,7 @@ namespace :deploy do
   task :upload do
     on roles(:app), in: :sequence, wait: 5 do
       fetch(:linked_files).each do |filename|
-        execute :mkdir, '-p', "#{File.dirname(filename)}"
+        execute :mkdir, '-p', "#{shared_path}/#{File.dirname(filename)}"
         upload!(filename, "#{shared_path}/#{filename}")
       end
     end
