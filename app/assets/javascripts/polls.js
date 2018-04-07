@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
   console.log(1)
-  let before = document.getElementById("main");
+  let before = document.getElementById("article_poll_area");
   let iframe = document.createElement("iframe");
-  iframe.id = "myframe";
-  iframe.width = 700;
+  iframe.width = "100%";
   iframe.height = 200;
     
   let html = `
