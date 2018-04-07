@@ -13,8 +13,12 @@
 ActiveRecord::Schema.define(version: 2018_04_07_033933) do
 
   create_table "votes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "user_id"
-    t.integer "value"
+    t.integer "group_id", null: false
+    t.string "user_id", limit: 32, null: false
+    t.integer "value", null: false
+    t.string "url", null: false
+    t.string "url_h", limit: 12, null: false
+    t.string "article_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
