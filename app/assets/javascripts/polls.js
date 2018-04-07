@@ -48,7 +48,7 @@ function vote(value) {
   json.vote.url = parent.location.href; // TODO:確認
   
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://localhost:3000/api/votes");
+  xhr.open("POST", "http://vote.turai.work/api/votes");
 
   xhr.addEventListener("progress", function(){}); // 通信中
   xhr.addEventListener("load", function(){}); // 通信成功
