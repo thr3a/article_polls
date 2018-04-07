@@ -26,3 +26,4 @@
 /config/master.key
 database.yml
 production.rb
+ap.js

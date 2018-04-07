@@ -59,6 +59,7 @@ namespace :deploy do
   end
 
   after :publishing, :restart
+  after :publishing, :minify
 
   task :mkdir do
     on roles(:app), in: :sequence, wait: 5 do
@@ -73,6 +74,16 @@ namespace :deploy do
         execute :mkdir, '-p', "#{shared_path}/#{File.dirname(filename)}"
         upload!(filename, "#{shared_path}/#{filename}")
       end
+    end
+  end
+  
+  task :minify do
+    require 'uglifier'
+    ug = Uglifier.new(harmony: true)
+    result = ug.compile(File.read("app/assets/javascripts/polls.js"))
+    File.write('public/ap.js', result)
+    on roles(:app), in: :sequence, wait: 5 do
+      upload!('public/ap.js', "#{current_path}/public")
     end
   end
   
