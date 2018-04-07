@@ -23,9 +23,10 @@ class VotesController < ApplicationController
 
   def create
     @vote = Vote.new(vote_params)
-    binding.pry
+    @vote.group_id = 0 # とりあえず
     @vote.user_id = vote_params[:user_id]
     @vote.value = vote_params[:value]
+    @vote.url = vote_params[:url]
     if @vote.save
       render json: {status: 'ok'}
     else
@@ -65,6 +66,6 @@ class VotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vote_params
-      params.require(:vote).permit(:user_id, :value)
+      params.require(:vote).permit(:user_id, :value, :url)
     end
 end

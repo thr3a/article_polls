@@ -46,7 +46,7 @@ function vote(value) {
   var json = {vote: {}};
   json.vote.user_id = setUserId();
   json.vote.value = value;
-  debugger
+  json.vote.url = parent.location.href; // TODO:確認
   
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "http://localhost:3000/api/votes");
