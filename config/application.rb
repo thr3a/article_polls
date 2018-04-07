@@ -10,6 +10,7 @@ module ArticlePolls
   class Application < Rails::Application
     config.load_defaults 5.2
 
+    config.action_dispatch.default_headers.delete('X-Frame-Options')
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
