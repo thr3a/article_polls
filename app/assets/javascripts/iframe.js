@@ -1,10 +1,5 @@
 //= require rails-ujs
 
-document.addEventListener('DOMContentLoaded', function () {
-  const parent_url = parent.location.href;
-  document.querySelector('#vote_url').value = parent_url;
-});
-
 document.addEventListener('ajax:success', function (e) {
 });
 

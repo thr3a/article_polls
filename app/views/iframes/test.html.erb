@@ -1,10 +1,10 @@
 <h1>nyaa</h1>
 <style>
-.iframe_box {
+.article_poll_box {
   width: 800px;
 }
 </style>
-<div class="iframe_box">
-  URL:<%= iframes_url(group_id: 1) %>
-  <iframe src="<%= iframes_url(group_id: 1) %>" width="100%" height="240" frameborder="0"></iframe>
+<%= javascript_include_tag 'polls' %>
+<div class="article_poll_box">
+  <div id="article_poll_area"></div>
 </div>

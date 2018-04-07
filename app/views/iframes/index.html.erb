@@ -17,6 +17,10 @@
     padding: 0.5em;
     list-style-type: none;
   }
+  
+  .vote_num{
+    margin-left: 50px;
+  }
   </style>
 </head>
 <body>
@@ -24,19 +28,21 @@
   <ul id="votes">
     <%= form_with url: votes_path, model: Vote.new do |f| %>
       <%= f.hidden_field :user_id, value: @uid %>
-      <%= f.hidden_field :url, value: request.original_url %>
+      <%= f.hidden_field :url, value: @vote.url %>
       <li>
         <%= button_tag '投票', value: '1', name: "vote[value]" %>
         <span class="vote_label">役に立った</span>
-        <span class"vote_num"></span>
+        <span class"vote_num"><%= @vote_counts[1] || 0%>票</span>
       </li>
       <li>
         <%= button_tag '投票', value: '-1', name: "vote[value]" %>
         <span class"vote_label">役に立たなかった</span>
+        <span class"vote_num"><%= @vote_counts[-1] || 0%>票</span>
       </li>
       <li>
         <%= button_tag '投票', value: '0', name: "vote[value]" %>
         <span class="vote_label">どちらでもない</span>
+        <span class"vote_num"><%= @vote_counts[0] || 0%>票</span>
       </li>
     <% end %>
   </ul>
