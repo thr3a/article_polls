@@ -7,5 +7,10 @@ Rails.application.routes.draw do
   scope '/admin' do
     resources :votes, only: [:index, :show]
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
+  resources :iframes, only: [:index] do
+    collection do
+      get :test
+    end 
+  end
 end
