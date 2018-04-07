@@ -1,18 +1,50 @@
 document.addEventListener('DOMContentLoaded', function () {
-  console.log(1)
   let before = document.getElementById("article_poll_area");
+  if(!before) { return;}
   let iframe = document.createElement("iframe");
+  iframe.style = "border: none;"
+  iframe.id = "myframe";
   iframe.width = "100%";
-  iframe.height = 200;
-    
+  iframe.height = 220;
   let html = `
-    <h3>この記事は参考になりましたか？</h3>
-    <label>このページの情報は役に立った</label>
-    <input type="button" value="投票" onclick="window.parent.vote('1')">
-    <label>このページの情報は役に立たなかった</label>
-    <input type="button" value="投票" onclick="window.parent.vote('-1')">
-    <label>どちらでもない</label>
-    <input type="button" value="投票" onclick="window.parent.vote('0')">
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <style>
+  ul {
+    padding: 0;
+    position: relative;
+  }
+
+  ul li {
+    border: solid 1px #2d8fdd;
+    background: #f1f8ff;
+    margin-bottom: 3px;
+    line-height: 1.5;
+    padding: 0.5em;
+    list-style-type: none;
+  }
+  </style>
+</head>
+<body>
+  <h3>この記事は参考になりましたか？</h3>
+  <ul id="votes">
+    <li>
+      <input type="button" value="投票" onclick="window.parent.vote('1')">
+      <span class="vote_label">役に立った</span>
+    </li>
+    <li>
+      <input type="button" value="投票" onclick="window.parent.vote('-1')">
+      <span class"vote_label">役に立たなかった</span>
+    </li>
+    <li>
+      <input type="button" value="投票" onclick="window.parent.vote('0')">
+      <span class="vote_label">どちらでもない</span>
+    </li>
+  </ul>
+</body>
+</html>
   `;
   let blob = new Blob([html], { type: 'text/html' });
   iframe.src = URL.createObjectURL(blob);
@@ -57,6 +89,13 @@ function vote(value) {
 
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.send(JSON.stringify(json));
+  
+  let nodes = document.getElementById("myframe").contentDocument.querySelectorAll('input[type=button]');
+  Array.prototype.forEach.call (nodes, function (elm) {
+    elm.disabled = "true";
+    elm.value = "投票ありがとうございました";
+  });
+
 }
 
 function setUserId() {
