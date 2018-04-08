@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  get 'sandbox/index'
+  
+  root "votes#index"
+  
   scope '/api' do
     resources :votes, only: [:create]
   end
   
-  scope '/admin' do
-    resources :votes, only: [:index, :show]
-  end
+  resources :votes, only: [:index, :show]
   
   resources :iframes, only: [:index] do
     collection do
