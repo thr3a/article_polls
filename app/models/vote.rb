@@ -9,4 +9,9 @@ class Vote < ApplicationRecord
   def set_url_h
     self.url_h = Digest::MD5.hexdigest(url)[0..11]
   end
+  
+  def value_locale
+     a = {-1=>"悪い", 0=>"普通", 1=>"良い"}
+     a[value]
+  end
 end

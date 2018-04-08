@@ -17,5 +17,9 @@ module ArticlePolls
         resource '*', :headers => :any, :methods => [:get, :post, :options]
       end
     end
+    
+    config.active_record.default_timezone = :local
+    config.time_zone = 'Tokyo'
+    
   end
 end

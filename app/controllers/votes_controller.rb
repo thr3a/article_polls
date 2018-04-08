@@ -3,7 +3,10 @@ class VotesController < ApplicationController
   before_action :basic_auth, except: [:create]
   
   def index
-    @votes = Vote.all
+    @votes = Vote
+      .group(:url_h, :value)
+      .order('latest_time DESC')
+      .select('url_h , max(url) AS url, count(1) AS cnt, count(distinct user_id) AS uniq_cnt, max(created_at) AS latest_time, value')
   end
 
   def create
