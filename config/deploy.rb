@@ -34,8 +34,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 #   rails_master_key: `cat config/master.key`
 # }
 
-set :rbenv_type, :system
-set :rbenv_ruby, '2.3.4'
+set :rbenv_ruby, '2.5.1'
 set :puma_threads,    [4, 16]
 set :puma_workers,    1
 set :puma_bind,       "unix://#{shared_path}/tmp/sockets/puma.sock"
